@@ -109,3 +109,88 @@
 .detailed-content > *:first-child {
   @apply mt-0;
 }
+
+/* ========================================
+   Dynamic Color Overrides from CMS Settings
+   These rules override Tailwind's default colors
+   with CSS variables injected by ColorStyleProvider
+   ======================================== */
+
+/* Primary color overrides */
+.color-style-provider .bg-primary {
+  background-color: var(--color-primary, #D84315) !important;
+}
+
+.color-style-provider .text-primary {
+  color: var(--color-primary, #D84315) !important;
+}
+
+.color-style-provider .border-primary {
+  border-color: var(--color-primary, #D84315) !important;
+}
+
+.color-style-provider .hover\:bg-primary:hover {
+  background-color: var(--color-primary, #D84315) !important;
+}
+
+.color-style-provider .hover\:text-primary:hover {
+  color: var(--color-primary, #D84315) !important;
+}
+
+.color-style-provider .focus\:ring-primary:focus {
+  --tw-ring-color: var(--color-primary, #D84315) !important;
+}
+
+/* Button primary styles */
+.color-style-provider button.bg-primary,
+.color-style-provider a.bg-primary,
+.color-style-provider [class*="btn-primary"] {
+  background-color: var(--color-button-bg, var(--color-primary, #D84315)) !important;
+  color: var(--color-button-text, var(--color-primary-foreground, #ffffff)) !important;
+}
+
+.color-style-provider button.bg-primary:hover,
+.color-style-provider a.bg-primary:hover {
+  filter: brightness(0.9);
+}
+
+/* Header styles */
+.color-style-provider header {
+  background-color: var(--color-header-bg, #1e3a5f) !important;
+  color: var(--color-header-text, #ffffff) !important;
+}
+
+/* Footer styles */
+.color-style-provider footer {
+  background-color: var(--color-footer-bg, #1e293b) !important;
+  color: var(--color-footer-text, #ffffff) !important;
+}
+
+/* Secondary color overrides */
+.color-style-provider .bg-secondary {
+  background-color: var(--color-secondary, #1e3a5f) !important;
+}
+
+.color-style-provider .text-secondary {
+  color: var(--color-secondary, #1e3a5f) !important;
+}
+
+/* Accent color overrides */
+.color-style-provider .bg-accent {
+  background-color: var(--color-accent, #FF7043) !important;
+}
+
+.color-style-provider .text-accent {
+  color: var(--color-accent, #FF7043) !important;
+}
+
+/* Links with primary color */
+.color-style-provider a.text-primary,
+.color-style-provider .link-primary {
+  color: var(--color-primary, #D84315) !important;
+}
+
+.color-style-provider a.text-primary:hover,
+.color-style-provider .link-primary:hover {
+  filter: brightness(0.8);
+}
