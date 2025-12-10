@@ -126,14 +126,14 @@ collections:
             widget: "object"
             collapsed: true
             fields:
-              - { label: "Màu Chính (Primary)", name: "primaryColor", widget: "string", default: "#D84315", hint: "Mã màu hex, VD: #D84315" }
-              - { label: "Màu Chữ Trên Nền Primary", name: "primaryForeground", widget: "string", default: "#ffffff" }
-              - { label: "Màu Phụ (Secondary)", name: "secondaryColor", widget: "string", default: "#1e3a5f" }
-              - { label: "Màu Nhấn (Accent)", name: "accentColor", widget: "string", default: "#FF7043" }
-              - { label: "Màu Nền Header", name: "headerBgColor", widget: "string", default: "#1e3a5f" }
-              - { label: "Màu Chữ Header", name: "headerTextColor", widget: "string", default: "#ffffff" }
-              - { label: "Màu Nền Footer", name: "footerBgColor", widget: "string", default: "#1e293b" }
-              - { label: "Màu Chữ Footer", name: "footerTextColor", widget: "string", default: "#ffffff" }
+              - { label: "Màu Chính (Primary)", name: "primaryColor", widget: "color", default: "#D84315" }
+              - { label: "Màu Chữ Trên Nền Primary", name: "primaryForeground", widget: "color", default: "#ffffff" }
+              - { label: "Màu Phụ (Secondary)", name: "secondaryColor", widget: "color", default: "#1e3a5f" }
+              - { label: "Màu Nhấn (Accent)", name: "accentColor", widget: "color", default: "#FF7043" }
+              - { label: "Màu Nền Header", name: "headerBgColor", widget: "color", default: "#1e3a5f" }
+              - { label: "Màu Chữ Header", name: "headerTextColor", widget: "color", default: "#ffffff" }
+              - { label: "Màu Nền Footer", name: "footerBgColor", widget: "color", default: "#1e293b" }
+              - { label: "Màu Chữ Footer", name: "footerTextColor", widget: "color", default: "#ffffff" }
 
   # Product Categories Collection
   - name: "categories"
