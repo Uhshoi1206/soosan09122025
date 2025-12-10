@@ -53,6 +53,18 @@ export interface SiteSettings {
         foundingDate?: string;
         vatNumber?: string;
     };
+    colors_section?: {
+        primaryColor: string;
+        primaryForeground: string;
+        secondaryColor: string;
+        accentColor: string;
+        headerBgColor: string;
+        headerTextColor: string;
+        footerBgColor: string;
+        footerTextColor: string;
+        buttonBgColor?: string;
+        buttonTextColor?: string;
+    };
 }
 
 // Default settings for fallback
@@ -85,4 +97,15 @@ export const defaultSiteSettings: SiteSettings = {
         organizationName: 'SOOSAN VINA MOTOR',
         organizationType: 'LocalBusiness',
     },
+    colors_section: {
+        primaryColor: '#D84315',
+        primaryForeground: '#ffffff',
+        secondaryColor: '#1e3a5f',
+        accentColor: '#FF7043',
+        headerBgColor: '#1e3a5f',
+        headerTextColor: '#ffffff',
+        footerBgColor: '#1e293b',
+        footerTextColor: '#ffffff',
+    },
 };
+

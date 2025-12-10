@@ -1,6 +1,7 @@
 import React from 'react';
 import { CompareProvider } from '@/contexts/CompareContextAstro';
 import { SiteSettingsProvider } from '@/contexts/SiteSettingsContext';
+import ColorStyleProvider from '../ColorStyleProvider';
 import Header from '../Header';
 import Footer from '../Footer';
 import ScrollToTop from '../ScrollToTop';
@@ -25,20 +26,22 @@ const CatalogPageWithProvider: React.FC<CatalogPageWithProviderProps> = ({
 }) => {
   return (
     <SiteSettingsProvider settings={siteSettings}>
-      <CompareProvider>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-grow">
-            <div className="container mx-auto px-4 py-8">
-              <CatalogHeader initialVehicleCount={initialVehicleCount} />
-              <CatalogPage initialVehicles={initialVehicles} initialSearchQuery={initialSearchQuery} />
-            </div>
-          </main>
-          <Footer />
-          <ScrollToTop />
-          <Toaster />
-        </div>
-      </CompareProvider>
+      <ColorStyleProvider>
+        <CompareProvider>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-grow">
+              <div className="container mx-auto px-4 py-8">
+                <CatalogHeader initialVehicleCount={initialVehicleCount} />
+                <CatalogPage initialVehicles={initialVehicles} initialSearchQuery={initialSearchQuery} />
+              </div>
+            </main>
+            <Footer />
+            <ScrollToTop />
+            <Toaster />
+          </div>
+        </CompareProvider>
+      </ColorStyleProvider>
     </SiteSettingsProvider>
   );
 };
