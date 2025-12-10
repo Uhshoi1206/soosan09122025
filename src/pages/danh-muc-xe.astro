@@ -2,8 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CatalogPageWithProvider from '../components/catalog/CatalogPageWithProvider.tsx';
 import { getVisibleProducts } from '../utils/contentCollections';
+import { getEntry } from 'astro:content';
 
 const visibleTrucks = await getVisibleProducts();
+const settingsEntry = await getEntry('settings', 'site-settings');
+const settings = settingsEntry?.data;
 ---
 
 <BaseLayout
@@ -14,5 +17,6 @@ const visibleTrucks = await getVisibleProducts();
     client:idle
     initialVehicles={visibleTrucks}
     initialVehicleCount={visibleTrucks.length}
+    siteSettings={settings}
   />
 </BaseLayout>

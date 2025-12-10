@@ -2,7 +2,7 @@
 import ProductLayout from '../../layouts/ProductLayout.astro';
 import ProductDetailWithProvider from '../../components/TruckDetail/ProductDetailWithProvider.tsx';
 import { getVisibleProducts, getCategoryById, getVisibleBlogPosts } from '../../utils/contentCollections';
-
+import { getEntry } from 'astro:content';
 export async function getStaticPaths() {
   const trucks = await getVisibleProducts();
 
@@ -63,6 +63,10 @@ const categoryName = category?.data.name || truck.type;
 
 // Get all blog posts for related posts calculation
 const allBlogPosts = await getVisibleBlogPosts();
+
+// Load site settings from CMS
+const settingsEntry = await getEntry('settings', 'site-settings');
+const settings = settingsEntry?.data;
 ---
 
 <ProductLayout product={truck} categoryName={categoryName}>
@@ -71,6 +75,7 @@ const allBlogPosts = await getVisibleBlogPosts();
     truck={truck}
     relatedTrucks={relatedTrucks}
     allBlogPosts={allBlogPosts}
+    siteSettings={settings}
   />
 </ProductLayout>
 
