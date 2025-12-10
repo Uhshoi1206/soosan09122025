@@ -12,23 +12,19 @@ import {
 } from './ui/popover';
 import CompareBadge from './CompareBadge';
 import { useCompare } from '@/contexts/CompareContextAstro';
+import { useSiteSettings } from '@/contexts/SiteSettingsContext';
 
-interface HeaderProps {
-  logo?: string;
-  logoAlt?: string;
-  phone?: string;
-  phoneDisplay?: string;
-}
-
-const Header: React.FC<HeaderProps> = ({
-  logo = "https://cdn.soosanmotor.com/soosanmotor.com_logo_Soosan.webp",
-  logoAlt = "Soosan Motor Logo",
-  phone = "0764678901",
-  phoneDisplay = "0764 6789 01"
-}) => {
+const Header: React.FC = () => {
   const isMobile = useIsMobile();
   const [open, setOpen] = useState(false);
   const { generateCompareUrl } = useCompare();
+
+  // Get settings from context
+  const { images_section, contact_section } = useSiteSettings();
+  const logo = images_section.logo;
+  const logoAlt = images_section.logoAlt;
+  const phone = contact_section.phone;
+  const phoneDisplay = contact_section.phoneDisplay;
 
   const handleCompareClick = () => {
     const compareUrl = generateCompareUrl();

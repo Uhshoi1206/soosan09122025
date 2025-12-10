@@ -5,39 +5,24 @@ import AddressRegions from './AddressRegions';
 import { useToast } from './ui/use-toast';
 import { submitToGoogleSheets, ContactData } from '@/services/googleSheetsService';
 import { getEnabledTypes, getCategoryName } from '@/lib/generated/categories';
-import type { Branch } from '@/types/siteSettings';
+import { useSiteSettings } from '@/contexts/SiteSettingsContext';
 
-interface FooterProps {
-  organizationName?: string;
-  organizationDescription?: string;
-  phone?: string;
-  phoneDisplay?: string;
-  email?: string;
-  branches?: Branch[];
-  facebookUrl?: string;
-  facebookUsername?: string;
-  messengerUrl?: string;
-  youtubeUrl?: string;
-  youtubeChannelName?: string;
-  tiktokUrl?: string;
-  tiktokUsername?: string;
-}
+const Footer: React.FC = () => {
+  // Get settings from context
+  const { organization_section, contact_section, branches, social_section } = useSiteSettings();
 
-const Footer: React.FC<FooterProps> = ({
-  organizationName = "SOOSAN VINA MOTOR",
-  organizationDescription = "Nhà sản xuất sơ mi rơ moóc, cẩu, thùng xe tải đông lạnh, xe xitéc (bồn) chở xăng dầu và các loại xe chuyên dụng khác. Đa dạng tải trọng và mẫu mã, giá cả cạnh tranh trên thị trường.",
-  phone = "0764678901",
-  phoneDisplay = "0764 6789 01",
-  email = "sales@soosanmotor.com",
-  branches = [],
-  facebookUrl = "https://www.facebook.com/soosanmotor",
-  facebookUsername = "@soosanmotor",
-  messengerUrl = "https://m.me/soosanmotor",
-  youtubeUrl = "https://youtube.com",
-  youtubeChannelName = "Soosan Vina Motor",
-  tiktokUrl = "https://www.tiktok.com/@moocsoosan",
-  tiktokUsername = "@moocsoosan"
-}) => {
+  const organizationName = organization_section.organizationName;
+  const phone = contact_section.phone;
+  const phoneDisplay = contact_section.phoneDisplay;
+  const email = contact_section.email;
+  const facebookUrl = social_section.facebookUrl || "https://www.facebook.com/soosanmotor";
+  const facebookUsername = social_section.facebookUsername || "@soosanmotor";
+  const messengerUrl = social_section.messengerUrl || "https://m.me/soosanmotor";
+  const youtubeUrl = social_section.youtubeUrl || "https://youtube.com";
+  const youtubeChannelName = social_section.youtubeChannelName || "Soosan Vina Motor";
+  const tiktokUrl = social_section.tiktokUrl || "https://www.tiktok.com/@moocsoosan";
+  const tiktokUsername = social_section.tiktokUsername || "@moocsoosan";
+
   const { toast } = useToast();
   const [inputPhone, setInputPhone] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -94,22 +79,23 @@ const Footer: React.FC<FooterProps> = ({
           <div>
             <h3 className="font-heading text-xl font-bold mb-4">{organizationName}</h3>
             <p className="mb-4 text-gray-300">
-              {organizationDescription}
+              Nhà sản xuất sơ mi rơ moóc, cẩu, thùng xe tải đông lạnh, xe xitéc (bồn) chở xăng dầu và các loại xe chuyên dụng khác.
+              Đa dạng tải trọng và mẫu mã, giá cả cạnh tranh trên thị trường.
             </p>
             <div className="flex flex-col space-y-2">
               <div className="flex items-center">
                 <Phone className="h-4 w-4 mr-2 text-primary" />
                 <a
-                  href="tel:0764678901"
+                  href={`tel:${phone}`}
                   className="hover:underline font-semibold text-white"
-                  aria-label="Gọi ngay: 0764 6789 01"
+                  aria-label={`Gọi ngay: ${phoneDisplay}`}
                 >
-                  0764 6789 01
+                  {phoneDisplay}
                 </a>
               </div>
               <div className="flex items-center">
                 <Mail className="h-4 w-4 mr-2 text-primary" />
-                <span>sales@soosanmotor.com</span>
+                <span>{email}</span>
               </div>
             </div>
           </div>

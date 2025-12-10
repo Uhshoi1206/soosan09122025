@@ -4,6 +4,7 @@ import HomePageWithProvider from '../components/home/HomePageWithProvider.tsx';
 
 import { getOrganizedProducts, getLegacyBlogData, getVisibleCategories, getActiveBanners } from '../utils/contentCollections';
 import { getBlogCategories } from '../utils/blogCategories';
+import { getEntry } from 'astro:content';
 
 const { featuredTrucks, specializedCranes, semiTrailers, tractors, trucks } = await getOrganizedProducts();
 const blogData = await getLegacyBlogData();
@@ -19,6 +20,10 @@ const enabledTypes = allCategories.map(cat => cat.data.id);
 
 // Load active banners
 const banners = await getActiveBanners();
+
+// Load site settings from CMS
+const siteSettingsEntry = await getEntry('settings', 'site-settings');
+const siteSettings = siteSettingsEntry?.data;
 ---
 
 <BaseLayout
@@ -38,5 +43,7 @@ const banners = await getActiveBanners();
     extraCategories={extraCategories}
     enabledTypes={enabledTypes}
     banners={banners}
+    siteSettings={siteSettings}
   />
 </BaseLayout>
+
