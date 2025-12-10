@@ -120,24 +120,6 @@ collections:
               - { label: "Ngày Thành Lập", name: "foundingDate", widget: "string", required: false, hint: "Định dạng: YYYY-MM-DD" }
               - { label: "Mã Số Thuế", name: "vatNumber", widget: "string", required: false }
 
-          # === MÀU SẮC GIAO DIỆN ===
-          - label: "🎨 Màu Sắc Giao Diện"
-            name: "colors_section"
-            widget: "object"
-            collapsed: true
-            required: false
-            fields:
-              - { label: "Màu Chính (Primary)", name: "primaryColor", widget: "color", default: "#D84315", hint: "Màu nút, link, icon chính" }
-              - { label: "Màu Chữ Trên Nền Chính", name: "primaryForeground", widget: "color", default: "#ffffff" }
-              - { label: "Màu Phụ (Secondary)", name: "secondaryColor", widget: "color", default: "#1e3a5f", hint: "Màu phụ cho một số thành phần" }
-              - { label: "Màu Nhấn (Accent)", name: "accentColor", widget: "color", default: "#FF7043" }
-              - { label: "Màu Nền Header", name: "headerBgColor", widget: "color", default: "#1e3a5f" }
-              - { label: "Màu Chữ Header", name: "headerTextColor", widget: "color", default: "#ffffff" }
-              - { label: "Màu Nền Footer", name: "footerBgColor", widget: "color", default: "#1e293b" }
-              - { label: "Màu Chữ Footer", name: "footerTextColor", widget: "color", default: "#ffffff" }
-              - { label: "Màu Nền Nút (tùy chọn)", name: "buttonBgColor", widget: "color", required: false }
-              - { label: "Màu Chữ Nút (tùy chọn)", name: "buttonTextColor", widget: "color", required: false }
-
   # Product Categories Collection
   - name: "categories"
     label: "Danh Mục Sản Phẩm"
