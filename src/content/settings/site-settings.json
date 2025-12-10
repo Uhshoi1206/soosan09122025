@@ -33,22 +33,32 @@
         {
           "province": "Hà Nội",
           "address": "456 Đường Láng, Quận Đống Đa, TP. Hà Nội",
-          "phone": "0764123456"
+          "phone": "0764123456",
+          "mapUrl": ""
         },
         {
           "province": "Hải Phòng",
           "address": "789 Đường Lê Hồng Phong, Quận Ngô Quyền, TP. Hải Phòng",
-          "phone": "0764234567"
+          "phone": "0764234567",
+          "mapUrl": ""
         },
         {
           "province": "Quảng Ninh",
           "address": "101 Đường Trần Hưng Đạo, TP. Hạ Long, Tỉnh Quảng Ninh",
-          "phone": "0764345678"
+          "phone": "0764345678",
+          "mapUrl": ""
         },
         {
           "province": "Bắc Ninh",
           "address": "202 Đường Lý Thái Tổ, TP. Bắc Ninh, Tỉnh Bắc Ninh",
-          "phone": "0764456789"
+          "phone": "0764456789",
+          "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1905185.2025095064!2d103.76776639375001!3d21.149817400000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31350b71d69836ab%3A0xdc5e9d49bf6747be!2sSOOSAN%20VINA%20MOTOR!5e0!3m2!1sen!2s!4v1755425329698!5m2!1sen!2s"
+        },
+        {
+          "province": "Bắc Giang",
+          "address": "Bắc Giang",
+          "phone": "0764 6789 01",
+          "mapUrl": ""
         }
       ]
     },
