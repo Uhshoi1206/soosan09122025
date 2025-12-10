@@ -135,7 +135,7 @@
     "vatNumber": ""
   },
   "colors_section": {
-    "primaryColor": "#d84315",
+    "primaryColor": "#d51515",
     "primaryForeground": "#ffffff",
     "secondaryColor": "#1e3a5f",
     "accentColor": "#FF7043",
@@ -143,7 +143,7 @@
     "headerTextColor": "#ffffff",
     "footerBgColor": "#1e293b",
     "footerTextColor": "#ffffff",
-    "buttonBgColor": "",
-    "buttonTextColor": ""
+    "buttonTextColor": "",
+    "buttonBgColor": ""
   }
 }
