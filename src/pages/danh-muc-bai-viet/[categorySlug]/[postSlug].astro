@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogLayout from '../../../layouts/BlogLayout.astro';
 import Layout from '../../../components/Layout.tsx';
 import { getCollection } from 'astro:content';
 import { getBlogCategories } from '../../../utils/blogCategories';
@@ -74,11 +74,29 @@ const getPostUrl = (post: any) => {
 };
 
 const tags = postData.tags || [];
+
+// Prepare article data for BlogLayout
+const articleForSchema = {
+  id: post.id,
+  title: postData.title,
+  slug: currentSlug,
+  description: postData.description,
+  category: postData.category,
+  images: postData.images,
+  publishDate: postData.publishDate,
+  readTime: postData.readTime,
+  author: postData.author || 'Trần Tú',
+  tags: postData.tags,
+  views: postData.views,
+  comments: postData.comments
+};
 ---
 
-<BaseLayout
-  title={`${postData.title} | Blog soosanmotor.com`}
-  description={postData.description}
+<BlogLayout 
+  article={articleForSchema} 
+  categoryName={categoryLabel} 
+  categorySlug={categorySlug}
+  content={post.body}
 >
   <Layout client:load>
     <article class="bg-gray-50 py-8">
@@ -288,4 +306,5 @@ const tags = postData.tags || [];
     </article>
     <TableOfContents client:only="react" content={post.body} />
   </Layout>
-</BaseLayout>
+</BlogLayout>
+

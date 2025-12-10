@@ -3,17 +3,54 @@ import '../styles/global.css';
 import '../components/blog/BlogStyles.css';
 import FloatingWidgets from '../components/FloatingWidgets';
 import GlobalSearch from '../components/GlobalSearch.astro';
-import { getCollection } from 'astro:content';
+import SocialMeta from '../components/seo/SocialMeta.astro';
+import { getCollection, getEntry } from 'astro:content';
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'product';
+  noindex?: boolean;
+  canonical?: string;
 }
 
+// Get site settings from CMS
+const siteSettingsEntry = await getEntry('settings', 'site-settings');
+const siteSettings = siteSettingsEntry?.data;
+
+// Fallback values if settings not found
+const siteName = siteSettings?.general_section?.siteName || 'Soosan Motor';
+const siteTagline = siteSettings?.general_section?.siteTagline || 'Chuyên cung cấp xe tải chất lượng';
+const defaultDescription = siteSettings?.general_section?.siteDescription || 'Chuyên cung cấp xe tải, đầu kéo, rơ moóc các loại.';
+const siteUrl = siteSettings?.general_section?.siteUrl || 'https://soosanmotor.com';
+const favicon = siteSettings?.images_section?.favicon || '/favicon.ico';
+const ogImage = siteSettings?.images_section?.ogImage || '/og-default.jpg';
+const themeColor = siteSettings?.seo_section?.themeColor || '#dc2626';
+const googleVerification = siteSettings?.seo_section?.googleVerification;
+const bingVerification = siteSettings?.seo_section?.bingVerification;
+
+// Organization Schema data
+const org = siteSettings?.organization_section;
+const contact = siteSettings?.contact_section;
+
 const {
-  title = "Xe Tải & Đầu Kéo - Chuyên cung cấp xe tải chất lượng",
-  description = "Chuyên cung cấp xe tải, đầu kéo, rơ moóc các loại. Tư vấn miễn phí, hỗ trợ vay vốn."
+  title = `${siteName} - ${siteTagline}`,
+  description = defaultDescription,
+  image = ogImage,
+  type = "website",
+  noindex = false,
+  canonical
 } = Astro.props;
+
+// Generate canonical URL
+const currentPath = Astro.url.pathname;
+const canonicalUrl = canonical || `${siteUrl}${currentPath}`;
+
+// Robots directive
+const robotsContent = noindex 
+  ? 'noindex, nofollow' 
+  : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
 
 // Get all products for order notifications
 const allProducts = await getCollection('products');
@@ -24,16 +61,91 @@ const productsForNotifications = allProducts
     type: p.data.type,
     slug: p.data.slug
   }));
+
+// Organization Schema JSON-LD
+const organizationSchema = org ? {
+  "@context": "https://schema.org",
+  "@type": org.organizationType || "LocalBusiness",
+  "name": org.organizationName,
+  "url": siteUrl,
+  "logo": siteSettings?.images_section?.logo,
+  "telephone": contact?.phone,
+  "email": contact?.email,
+  "address": contact?.address ? {
+    "@type": "PostalAddress",
+    "streetAddress": contact.address,
+    "addressCountry": "VN"
+  } : undefined,
+  "foundingDate": org.foundingDate || undefined,
+  "vatID": org.vatNumber || undefined,
+  "sameAs": [
+    siteSettings?.social_section?.facebookUrl,
+    siteSettings?.social_section?.youtubeUrl,
+    siteSettings?.social_section?.tiktokUrl
+  ].filter(Boolean)
+} : null;
 ---
 
 <!DOCTYPE html>
 <html lang="vi">
   <head>
+    <!-- Primary Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- Robots & Crawlers -->
+    <meta name="robots" content={robotsContent} />
+    <meta name="googlebot" content={robotsContent} />
+    <meta name="bingbot" content={robotsContent} />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href={favicon} />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    
+    <!-- Language & Regional -->
+    <meta http-equiv="Content-Language" content="vi" />
+    <meta name="language" content="Vietnamese" />
+    <meta name="geo.region" content="VN" />
+    <meta name="geo.placename" content="Vietnam" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content={themeColor} />
+    <meta name="msapplication-TileColor" content={themeColor} />
+    
+    <!-- Search Console Verification -->
+    {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
+    {bingVerification && <meta name="msvalidate.01" content={bingVerification} />}
+    
+    <!-- Open Graph & Twitter Cards -->
+    <SocialMeta 
+      title={title}
+      description={description}
+      image={image}
+      url={currentPath}
+      type={type}
+    />
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://cdn.soosanmotor.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.soosanmotor.com" />
+    
+    <!-- AI Crawlers Meta (GEO) -->
+    <meta name="ai-content-declaration" content="human-created" />
+    <meta name="generator" content="Astro" />
+    
+    <!-- Organization Schema.org JSON-LD -->
+    {organizationSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    )}
+    
+    <!-- Scripts -->
     <script is:inline src="/search-enhanced.js"></script>
   </head>
   <body>

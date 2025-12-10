@@ -79,6 +79,7 @@ const productsCollection = defineCollection({
     isNew: z.boolean().optional(),
     isHot: z.boolean().optional(),
     isHidden: z.boolean().default(false),
+    stockStatus: z.enum(['in-stock', 'out-of-stock', 'pre-order', 'discontinued']).default('in-stock'),
     origin: z.string().optional(),
 
     // Descriptions
@@ -198,10 +199,80 @@ const blogCollection = defineCollection({
   }),
 });
 
+// Site Settings Collection Schema
+const siteSettingsCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    // General Section
+    general_section: z.object({
+      siteName: z.string(),
+      siteTagline: z.string(),
+      siteDescription: z.string(),
+      siteKeywords: z.array(z.string()).optional(),
+      siteUrl: z.string(),
+    }),
+
+    // Images Section
+    images_section: z.object({
+      logo: z.string(),
+      logoAlt: z.string(),
+      favicon: z.string(),
+      ogImage: z.string().optional(),
+    }),
+
+    // Contact Section
+    contact_section: z.object({
+      phone: z.string(),
+      phoneDisplay: z.string(),
+      email: z.string(),
+      address: z.string().optional(),
+    }),
+
+    // Branches (Hệ thống chi nhánh)
+    branches: z.array(z.object({
+      regionName: z.string(),
+      addresses: z.array(z.object({
+        province: z.string(),
+        address: z.string(),
+        phone: z.string(),
+        mapUrl: z.string().optional(),
+      })),
+    })),
+
+    // Social Section
+    social_section: z.object({
+      facebookUrl: z.string().optional(),
+      facebookUsername: z.string().optional(),
+      messengerUrl: z.string().optional(),
+      youtubeUrl: z.string().optional(),
+      youtubeChannelName: z.string().optional(),
+      tiktokUrl: z.string().optional(),
+      tiktokUsername: z.string().optional(),
+      zaloPhone: z.string().optional(),
+    }),
+
+    // SEO Section
+    seo_section: z.object({
+      googleVerification: z.string().optional(),
+      bingVerification: z.string().optional(),
+      themeColor: z.string(),
+    }),
+
+    // Organization Section (Schema.org)
+    organization_section: z.object({
+      organizationName: z.string(),
+      organizationType: z.enum(['LocalBusiness', 'Corporation', 'Organization']),
+      foundingDate: z.string().optional(),
+      vatNumber: z.string().optional(),
+    }),
+  }),
+});
+
 export const collections = {
   'categories': categoriesCollection,
   'blog-categories': blogCategoriesCollection,
   'banners': bannersCollection,
   'products': productsCollection,
   'blog': blogCollection,
+  'settings': siteSettingsCollection,
 };

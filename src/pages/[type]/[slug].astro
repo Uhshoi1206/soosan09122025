@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductLayout from '../../layouts/ProductLayout.astro';
 import ProductDetailWithProvider from '../../components/TruckDetail/ProductDetailWithProvider.tsx';
 import { getVisibleProducts, getCategoryById, getVisibleBlogPosts } from '../../utils/contentCollections';
 
@@ -65,14 +65,12 @@ const categoryName = category?.data.name || truck.type;
 const allBlogPosts = await getVisibleBlogPosts();
 ---
 
-<BaseLayout
-  title={`${truck.name} - ${categoryName} | soosanmotor.com`}
-  description={truck.description}
->
+<ProductLayout product={truck} categoryName={categoryName}>
   <ProductDetailWithProvider
     client:idle
     truck={truck}
     relatedTrucks={relatedTrucks}
     allBlogPosts={allBlogPosts}
   />
-</BaseLayout>
+</ProductLayout>
+

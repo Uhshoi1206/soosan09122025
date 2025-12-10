@@ -35,7 +35,7 @@ export interface CoolingBoxStructure {
   insulationThickness?: string;
   refrigerationSystem?: string;
   temperatureRange?: string;
-  
+
   // Thêm các thông số chi tiết hơn cho thùng đông lạnh
   coolingUnit?: string;        // Đơn vị làm lạnh
   compressorType?: string;     // Loại máy nén
@@ -126,7 +126,7 @@ export interface CraneSpecification {
   maxLiftingMoment?: string; // Moment nâng lớn nhất (tấn.m)
   maxLiftingHeight?: string; // Chiều cao nâng lớn nhất (m)
   maxWorkingRadius?: string; // Bán kính làm việc lớn nhất (m)
-  
+
   // Thông số cần cẩu (Boom)
   boomType?: string; // Loại cần (ví dụ: Cần lục giác)
   boomSections?: number; // Số đoạn cần
@@ -139,7 +139,7 @@ export interface CraneSpecification {
   winchRatedSpeed?: string; // Tốc độ tời định mức (m/phút) - ví dụ: 16 (m/phút) (tại lớp thứ 4)
   winchHookSpeed?: string; // Tốc độ móc tời (m/phút)
   winchRopeType?: string; // Loại cáp tời (ø x m) - ví dụ: 10 x 120 IWRC 6xWS(26)
-  
+
   // Thông số xoay (Swing)
   swingAngle?: string; // Góc xoay (độ) - ví dụ: 360° liên tục
   swingSpeed?: string; // Tốc độ xoay (vòng/phút) - ví dụ: 2.0 (rpm)
@@ -250,30 +250,31 @@ export interface Truck {
   type: VehicleType;
   isNew?: boolean;
   isHot?: boolean;
+  stockStatus?: 'in-stock' | 'out-of-stock' | 'pre-order' | 'discontinued';
   origin?: string;
   thumbnailUrl: string;
   images: string[];
-  
+
   // Thông số kỹ thuật cơ bản
   specifications?: Record<string, any>;
-  
+
   // Mô tả và tính năng
   description?: string;
   detailedDescription?: string;  // Thêm thuộc tính này để lưu mô tả chi tiết riêng cho từng sản phẩm
   features?: string[];
-  
+
   // Thông số chi tiết cho động cơ
   engineModel?: string;       // Model động cơ
   engineCapacity?: string;    // Dung tích động cơ
   enginePower?: string;       // Công suất động cơ
   engineTorque?: string;      // Mô-men xoắn
   emissionStandard?: string;  // Tiêu chuẩn khí thải
-  
+
   // Chi tiết chuyên biệt theo loại xe
   boxType?: 'đông-lạnh' | 'bảo-ôn' | 'kín' | 'bạt' | 'lửng' | 'xi-téc';
   craneType?: 'cẩu-rời' | 'cẩu-gắn-xe';
   trailerType?: 'ben' | 'sàn' | 'sàn-rút' | 'lùn' | 'cổ-cò' | 'xương' | 'lửng' | 'rào' | 'xi-téc' | 'bồn-xi-măng' | 'bồn-sắt' | 'bồn-bột-mì';
-  
+
   // Thông số kỹ thuật chi tiết theo loại xe
   coolingBox?: CoolingBoxStructure;
   insulatedBox?: InsulatedBoxStructure;
@@ -284,7 +285,7 @@ export interface Truck {
   craneSpec?: CraneSpecification;
   trailerSpec?: TrailerSpecification;
   tractorSpec?: TractorSpecification;
-  
+
   // Thông số kỹ thuật phổ biến
   engineType?: string;
   fuel?: string;
@@ -297,7 +298,7 @@ export interface Truck {
   seats?: number;
   steeringSystem?: string;
   suspensionType?: string;
-  
+
   // Thông số khung gầm
   chassisMaterial?: string;  // Vật liệu khung gầm
   frontSuspension?: string;  // Hệ thống treo trước
@@ -306,27 +307,27 @@ export interface Truck {
   rearBrake?: string;        // Phanh sau
   parkingBrake?: string;     // Phanh tay/phanh đỗ
   steeringType?: string;     // Loại hệ thống lái
-  
+
   // Kích thước
   insideDimension?: string;  // Kích thước thùng bên trong (DxRxC)
   groundClearance?: number;  // Khoảng sáng gầm xe (mm)
   wheelTrack?: string;       // Vết bánh xe (trước/sau) (mm)
   turningRadius?: number;    // Bán kính quay vòng (m)
-  
+
   // Trọng lượng chi tiết
   grossWeight?: string;      // Tổng tải trọng
   kerbWeight?: string;       // Trọng lượng không tải
   frontAxleLoad?: string;    // Tải trọng cầu trước
   rearAxleLoad?: string;     // Tải trọng cầu sau
-  
+
   // Thông số hiệu suất
   maxSpeed?: string;         // Tốc độ tối đa
   climbingAbility?: string;  // Khả năng leo dốc
   fuelConsumption?: string;  // Mức tiêu thụ nhiên liệu
-  
+
   // Trang bị tiện nghi
   cabinFeatures?: string[];  // Tính năng cabin
-  
+
   // Cho phép mở rộng thêm các trường khác
   [key: string]: any;
 }
@@ -410,3 +411,35 @@ export function getTrailerTypeName(type?: string): string {
       return '';
   }
 }
+
+// Get stock status display info for UI
+export function getStockStatusInfo(status?: string): { label: string; className: string; show: boolean } {
+  switch (status) {
+    case 'out-of-stock':
+      return {
+        label: 'Hết hàng',
+        className: 'bg-gray-500 hover:bg-gray-600 text-white',
+        show: true
+      };
+    case 'pre-order':
+      return {
+        label: 'Đặt trước',
+        className: 'bg-amber-500 hover:bg-amber-600 text-white',
+        show: true
+      };
+    case 'discontinued':
+      return {
+        label: 'Ngừng KD',
+        className: 'bg-red-800 hover:bg-red-900 text-white',
+        show: true
+      };
+    case 'in-stock':
+    default:
+      return {
+        label: 'Sẵn hàng',
+        className: 'bg-green-500 hover:bg-green-600 text-white',
+        show: true // Hiển thị badge sẵn hàng để thu hút khách hàng
+      };
+  }
+}
+

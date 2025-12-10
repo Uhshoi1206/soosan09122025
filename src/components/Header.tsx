@@ -13,7 +13,19 @@ import {
 import CompareBadge from './CompareBadge';
 import { useCompare } from '@/contexts/CompareContextAstro';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  logo?: string;
+  logoAlt?: string;
+  phone?: string;
+  phoneDisplay?: string;
+}
+
+const Header: React.FC<HeaderProps> = ({
+  logo = "https://cdn.soosanmotor.com/soosanmotor.com_logo_Soosan.webp",
+  logoAlt = "Soosan Motor Logo",
+  phone = "0764678901",
+  phoneDisplay = "0764 6789 01"
+}) => {
   const isMobile = useIsMobile();
   const [open, setOpen] = useState(false);
   const { generateCompareUrl } = useCompare();
@@ -30,8 +42,8 @@ const Header: React.FC = () => {
           {/* Logo */}
           <a href="/" className="flex items-center space-x-2">
             <img
-              src="https://cdn.soosanmotor.com/soosanmotor.com_logo_Soosan.webp"
-              alt="soosanmotor.com Logo"
+              src={logo}
+              alt={logoAlt}
               className="h-8 md:h-10 w-auto object-contain"
             />
           </a>
@@ -81,15 +93,15 @@ const Header: React.FC = () => {
               <div className="hidden md:flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-primary animate-pulse" />
                 <a
-                  href="tel:0764678901"
+                  href={`tel:${phone}`}
                   className="text-sm font-bold hover:text-primary transition-colors text-black"
-                  aria-label="Gọi ngay: 0764 6789 01"
+                  aria-label={`Gọi ngay: ${phoneDisplay}`}
                 >
-                  0764 6789 01
+                  {phoneDisplay}
                 </a>
               </div>
             )}
-            
+
             {!isMobile ? (
               <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
+    "@astrojs/sitemap": "^3.2.1",
     "@hookform/resolvers": "^3.9.0",
     "@icons-pack/react-simple-icons": "^12.7.0",
     "@radix-ui/react-accordion": "^1.2.0",

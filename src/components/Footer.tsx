@@ -2,20 +2,50 @@ import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Facebook, MessageCircle, Youtube } from 'lucide-react';
 import { FaTiktok } from 'react-icons/fa';
 import AddressRegions from './AddressRegions';
-import { addressRegions } from '@/lib/constants/addressData';
 import { useToast } from './ui/use-toast';
 import { submitToGoogleSheets, ContactData } from '@/services/googleSheetsService';
 import { getEnabledTypes, getCategoryName } from '@/lib/generated/categories';
+import type { Branch } from '@/types/siteSettings';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  organizationName?: string;
+  organizationDescription?: string;
+  phone?: string;
+  phoneDisplay?: string;
+  email?: string;
+  branches?: Branch[];
+  facebookUrl?: string;
+  facebookUsername?: string;
+  messengerUrl?: string;
+  youtubeUrl?: string;
+  youtubeChannelName?: string;
+  tiktokUrl?: string;
+  tiktokUsername?: string;
+}
+
+const Footer: React.FC<FooterProps> = ({
+  organizationName = "SOOSAN VINA MOTOR",
+  organizationDescription = "Nhà sản xuất sơ mi rơ moóc, cẩu, thùng xe tải đông lạnh, xe xitéc (bồn) chở xăng dầu và các loại xe chuyên dụng khác. Đa dạng tải trọng và mẫu mã, giá cả cạnh tranh trên thị trường.",
+  phone = "0764678901",
+  phoneDisplay = "0764 6789 01",
+  email = "sales@soosanmotor.com",
+  branches = [],
+  facebookUrl = "https://www.facebook.com/soosanmotor",
+  facebookUsername = "@soosanmotor",
+  messengerUrl = "https://m.me/soosanmotor",
+  youtubeUrl = "https://youtube.com",
+  youtubeChannelName = "Soosan Vina Motor",
+  tiktokUrl = "https://www.tiktok.com/@moocsoosan",
+  tiktokUsername = "@moocsoosan"
+}) => {
   const { toast } = useToast();
-  const [phone, setPhone] = useState('');
+  const [inputPhone, setInputPhone] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handlePhoneSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!phone.trim()) {
+
+    if (!inputPhone.trim()) {
       toast({
         title: "Vui lòng nhập số điện thoại!",
         variant: "destructive"
@@ -24,24 +54,24 @@ const Footer: React.FC = () => {
     }
 
     setIsSubmitting(true);
-    
+
     try {
       const contactData: ContactData = {
         timestamp: new Date().toLocaleString('vi-VN'),
         source: 'footer',
-        phone: phone,
+        phone: inputPhone,
         message: 'Yêu cầu gọi lại'
       };
 
       const success = await submitToGoogleSheets(contactData);
-      
+
       if (success) {
         toast({
           title: "Gửi thành công!",
           description: "Chúng tôi sẽ gọi lại cho bạn trong thời gian sớm nhất.",
         });
-        
-        setPhone('');
+
+        setInputPhone('');
       } else {
         throw new Error('Gửi thất bại');
       }
@@ -62,10 +92,9 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
-            <h3 className="font-heading text-xl font-bold mb-4">SOOSAN VINA MOTOR</h3>
+            <h3 className="font-heading text-xl font-bold mb-4">{organizationName}</h3>
             <p className="mb-4 text-gray-300">
-              Nhà sản xuất sơ mi rơ moóc, cẩu, thùng xe tải đông lạnh, xe xitéc (bồn) chở xăng dầu và các loại xe chuyên dụng khác.
-              Đa dạng tải trọng và mẫu mã, giá cả cạnh tranh trên thị trường.
+              {organizationDescription}
             </p>
             <div className="flex flex-col space-y-2">
               <div className="flex items-center">
@@ -147,16 +176,16 @@ const Footer: React.FC = () => {
           {/* Vehicle Categories */}
           <div>
             <h3 className="font-heading text-xl font-bold mb-4">Danh mục xe</h3>
-              <ul className="space-y-2">
-                {getEnabledTypes().map((key) => (
-                  <li key={key}>
-                    <a href={`/danh-muc-xe?type=${key}`} className="text-gray-300 hover:text-primary transition-colors">
-                      {getCategoryName(key)}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            
+            <ul className="space-y-2">
+              {getEnabledTypes().map((key) => (
+                <li key={key}>
+                  <a href={`/danh-muc-xe?type=${key}`} className="text-gray-300 hover:text-primary transition-colors">
+                    {getCategoryName(key)}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
             {/* Phân cách và Tiện ích */}
             <div className="mt-6 pt-6 border-t border-gray-700">
               <h4 className="font-heading text-lg font-bold mb-3 text-primary-100">Tiện ích</h4>
@@ -196,7 +225,7 @@ const Footer: React.FC = () => {
                   </div>
                   <span>@soosanmotor</span>
                 </a>
-                
+
                 <a
                   href="https://m.me/soosanmotor"
                   target="_blank"
@@ -208,7 +237,7 @@ const Footer: React.FC = () => {
                   </div>
                   <span>@soosanmotor</span>
                 </a>
-                
+
                 <a
                   href="https://youtube.com"
                   target="_blank"
@@ -220,7 +249,7 @@ const Footer: React.FC = () => {
                   </div>
                   <span>Soosan Vina Motor</span>
                 </a>
-                
+
                 <a
                   href="https://www.tiktok.com/@moocsoosan"
                   target="_blank"
@@ -246,13 +275,13 @@ const Footer: React.FC = () => {
                 <input
                   type="tel"
                   placeholder="Số điện thoại của bạn"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  value={inputPhone}
+                  onChange={(e) => setInputPhone(e.target.value)}
                   className="flex-1 px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-primary"
                   required
                 />
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   disabled={isSubmitting}
                   className="px-4 py-2 bg-primary hover:bg-primary-700 rounded-md transition-colors disabled:opacity-50"
                 >
@@ -262,12 +291,14 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Địa chỉ theo khu vực */}
-        <div className="mt-8 pt-8 border-t border-gray-800">
-          <h3 className="font-heading text-xl font-bold mb-6 text-center">Hệ thống chi nhánh toàn quốc</h3>
-          <AddressRegions regions={addressRegions} />
-        </div>
+        {branches && branches.length > 0 && (
+          <div className="mt-8 pt-8 border-t border-gray-800">
+            <h3 className="font-heading text-xl font-bold mb-6 text-center">Hệ thống chi nhánh toàn quốc</h3>
+            <AddressRegions regions={branches} />
+          </div>
+        )}
 
         <div className="border-t border-gray-800 mt-8 pt-6">
           <div className="flex flex-col md:flex-row justify-between">

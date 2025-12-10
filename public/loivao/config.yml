@@ -14,6 +14,112 @@ public_folder: "/assets/uploads"
 locale: "vi"
 
 collections:
+  # Site Settings (Singleton - chỉ 1 file)
+  - name: "settings"
+    label: "⚙️ Cài Đặt Trang Web"
+    description: "Quản lý thông tin chung, logo, liên hệ, chi nhánh, SEO..."
+    files:
+      - name: "site-settings"
+        label: "Cài Đặt Chính"
+        file: "src/content/settings/site-settings.json"
+        fields:
+          # === THÔNG TIN CHUNG ===
+          - label: "📋 Thông Tin Chung"
+            name: "general_section"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Tên Trang Web", name: "siteName", widget: "string", default: "Soosan Motor", hint: "Tên hiển thị trên title bar" }
+              - { label: "Slogan", name: "siteTagline", widget: "string", default: "Chuyên cung cấp xe tải chất lượng", hint: "Hiển thị sau tên trang" }
+              - { label: "Mô Tả SEO", name: "siteDescription", widget: "text", hint: "Mô tả mặc định cho trang chủ và các trang không có mô tả riêng" }
+              - { label: "Từ Khóa SEO", name: "siteKeywords", widget: "list", hint: "Danh sách từ khóa chính" }
+              - { label: "URL Trang Web", name: "siteUrl", widget: "string", default: "https://soosanmotor.com" }
+          
+          # === HÌNH ẢNH ===
+          - label: "🖼️ Hình Ảnh"
+            name: "images_section"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Logo", name: "logo", widget: "string", default: "https://cdn.soosanmotor.com/soosanmotor.com_logo_Soosan.webp", hint: "URL logo hiển thị trên header" }
+              - { label: "Alt Text Logo", name: "logoAlt", widget: "string", default: "Soosan Motor Logo" }
+              - { label: "Favicon", name: "favicon", widget: "string", default: "/favicon.ico", hint: "Icon hiển thị trên tab trình duyệt" }
+              - { label: "Ảnh Open Graph", name: "ogImage", widget: "string", hint: "Ảnh mặc định khi chia sẻ lên mạng xã hội" }
+          
+          # === LIÊN HỆ CHÍNH ===
+          - label: "📞 Thông Tin Liên Hệ"
+            name: "contact_section"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Số Điện Thoại Chính", name: "phone", widget: "string", default: "0764678901" }
+              - { label: "Số Điện Thoại Hiển Thị", name: "phoneDisplay", widget: "string", default: "0764 6789 01", hint: "Định dạng hiển thị cho đẹp" }
+              - { label: "Email", name: "email", widget: "string", default: "sales@soosanmotor.com" }
+              - { label: "Địa Chỉ Trụ Sở", name: "address", widget: "text" }
+          
+          # === HỆ THỐNG CHI NHÁNH ===
+          - label: "🏢 Hệ Thống Chi Nhánh"
+            name: "branches"
+            widget: "list"
+            collapsed: true
+            label_singular: "Vùng Miền"
+            summary: "{{fields.regionName}} ({{fields.addresses.length}} chi nhánh)"
+            fields:
+              - { label: "Tên Vùng", name: "regionName", widget: "string", hint: "VD: Miền Bắc, Miền Trung, Miền Nam" }
+              - label: "Danh Sách Chi Nhánh"
+                name: "addresses"
+                widget: "list"
+                label_singular: "Chi Nhánh"
+                summary: "{{fields.province}}"
+                fields:
+                  - { label: "Tỉnh/Thành Phố", name: "province", widget: "string" }
+                  - { label: "Địa Chỉ", name: "address", widget: "string" }
+                  - { label: "Số Điện Thoại", name: "phone", widget: "string" }
+                  - { label: "Link Google Maps", name: "mapUrl", widget: "string", required: false }
+          
+          # === MẠNG XÃ HỘI ===
+          - label: "🌐 Mạng Xã Hội"
+            name: "social_section"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Facebook URL", name: "facebookUrl", widget: "string", required: false }
+              - { label: "Facebook Username", name: "facebookUsername", widget: "string", required: false, hint: "VD: @soosanmotor" }
+              - { label: "Messenger URL", name: "messengerUrl", widget: "string", required: false }
+              - { label: "YouTube URL", name: "youtubeUrl", widget: "string", required: false }
+              - { label: "YouTube Channel Name", name: "youtubeChannelName", widget: "string", required: false }
+              - { label: "TikTok URL", name: "tiktokUrl", widget: "string", required: false }
+              - { label: "TikTok Username", name: "tiktokUsername", widget: "string", required: false, hint: "VD: @moocsoosan" }
+              - { label: "Zalo Phone", name: "zaloPhone", widget: "string", required: false }
+          
+          # === SEO NÂNG CAO ===
+          - label: "🔍 SEO Nâng Cao"
+            name: "seo_section"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Google Verification", name: "googleVerification", widget: "string", required: false, hint: "Mã xác minh Google Search Console" }
+              - { label: "Bing Verification", name: "bingVerification", widget: "string", required: false }
+              - { label: "Theme Color", name: "themeColor", widget: "string", default: "#dc2626", hint: "Màu theme cho mobile browser" }
+          
+          # === ORGANIZATION SCHEMA ===
+          - label: "🏛️ Thông Tin Doanh Nghiệp (Schema.org)"
+            name: "organization_section"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Tên Tổ Chức", name: "organizationName", widget: "string", default: "SOOSAN VINA MOTOR" }
+              - label: "Loại Tổ Chức"
+                name: "organizationType"
+                widget: "select"
+                default: "LocalBusiness"
+                options:
+                  - { label: "Doanh nghiệp địa phương", value: "LocalBusiness" }
+                  - { label: "Công ty", value: "Corporation" }
+                  - { label: "Tổ chức", value: "Organization" }
+              - { label: "Ngày Thành Lập", name: "foundingDate", widget: "string", required: false, hint: "Định dạng: YYYY-MM-DD" }
+              - { label: "Mã Số Thuế", name: "vatNumber", widget: "string", required: false }
+
   # Product Categories Collection
   - name: "categories"
     label: "Danh Mục Sản Phẩm"
@@ -612,6 +718,15 @@ collections:
       - { label: "Mới", name: "isNew", widget: "boolean", default: false }
       - { label: "Nổi Bật", name: "isHot", widget: "boolean", default: false }
       - { label: "Ẩn", name: "isHidden", widget: "boolean", default: false }
+      - label: "Tình Trạng Kho"
+        name: "stockStatus"
+        widget: "select"
+        default: "in-stock"
+        options:
+          - { label: "Sẵn hàng", value: "in-stock" }
+          - { label: "Hết hàng", value: "out-of-stock" }
+          - { label: "Đặt trước", value: "pre-order" }
+          - { label: "Ngừng kinh doanh", value: "discontinued" }
       - { label: "Xuất Xứ", name: "origin", widget: "string", required: false }
 
       # Descriptions
