@@ -119,6 +119,21 @@ collections:
                   - { label: "Tổ chức", value: "Organization" }
               - { label: "Ngày Thành Lập", name: "foundingDate", widget: "string", required: false, hint: "Định dạng: YYYY-MM-DD" }
               - { label: "Mã Số Thuế", name: "vatNumber", widget: "string", required: false }
+          
+          # === MÀU SẮC GIAO DIỆN ===
+          - label: "🎨 Màu Sắc Giao Diện"
+            name: "colors_section"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Màu Chính (Primary)", name: "primaryColor", widget: "string", default: "#D84315", hint: "Mã màu hex, VD: #D84315" }
+              - { label: "Màu Chữ Trên Nền Primary", name: "primaryForeground", widget: "string", default: "#ffffff" }
+              - { label: "Màu Phụ (Secondary)", name: "secondaryColor", widget: "string", default: "#1e3a5f" }
+              - { label: "Màu Nhấn (Accent)", name: "accentColor", widget: "string", default: "#FF7043" }
+              - { label: "Màu Nền Header", name: "headerBgColor", widget: "string", default: "#1e3a5f" }
+              - { label: "Màu Chữ Header", name: "headerTextColor", widget: "string", default: "#ffffff" }
+              - { label: "Màu Nền Footer", name: "footerBgColor", widget: "string", default: "#1e293b" }
+              - { label: "Màu Chữ Footer", name: "footerTextColor", widget: "string", default: "#ffffff" }
 
   # Product Categories Collection
   - name: "categories"
