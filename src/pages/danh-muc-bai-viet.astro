@@ -6,7 +6,10 @@ import { getBlogCategories } from '../utils/blogCategories';
 import BlogCategoryFilter from '../components/blog/BlogCategoryFilter.tsx';
 import BlogSearch from '../components/blog/BlogSearch.tsx';
 import { OptimizedImage } from '../components/ui/optimized-image.tsx';
+import { getEntry } from 'astro:content';
 
+const settingsEntry = await getEntry('settings', 'site-settings');
+const settings = settingsEntry?.data;
 const sortedPosts = await getVisibleBlogPosts();
 const { categories, categoryMap, categoryInfoMap, getCategorySlug } = await getBlogCategories();
 
@@ -25,7 +28,7 @@ const postsByCategory = categories.reduce((acc, cat) => {
   title="Tin Tức & Blog | Tin tức ngành vận tải, đánh giá xe"
   description="Cập nhật tin tức mới nhất về ngành vận tải, đánh giá xe tải, xe cẩu, kinh nghiệm lái xe và bảo dưỡng."
 >
-  <Layout client:load>
+  <Layout client:load siteSettings={settings}>
     <div class="container mx-auto px-4 py-8">
       <div class="text-center mb-8">
         <h1 class="text-4xl font-bold mb-3 text-gray-900">Tin Tức & Blog</h1>

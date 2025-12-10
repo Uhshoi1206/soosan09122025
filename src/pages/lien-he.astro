@@ -17,7 +17,7 @@ const email = settings?.contact_section?.email || 'sales@soosanmotor.com';
   title="Liên Hệ | soosanmotor.com - Nhà sản xuất sơ mi rơ moóc, cẩu, thùng xe tải đông lạnh, Xe xitéc (bồn) chở xăng dầu, xe chuyên dụng hàng đầu tại Việt Nam"
   description={`Liên hệ với soosanmotor.com để được tư vấn và báo giá tốt nhất cho xe tải, xe cẩu, sơ mi rơ mooc, xe xitéc (bồn) chở xăng dầu và các loại xe chuyên dụng khác. Hotline: ${phoneDisplay}`}
 >
-  <Layout client:load>
+  <Layout client:load siteSettings={settings}>
     {/* Page Header */}
     <div class="bg-gray-900 text-white py-12">
       <div class="container mx-auto">

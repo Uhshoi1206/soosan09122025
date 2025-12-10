@@ -15,7 +15,7 @@ const phoneDisplay = settings?.contact_section?.phoneDisplay || '0815555528';
   title="Giới Thiệu | Soosan Vina Motor - Nhà sản xuất xe tải & thiết bị vận tải"
   description="Soosan Vina Motor tự hào là nhà sản xuất đa dạng các dòng phương tiện vận tải hàng đầu Việt Nam. Chuyên cung cấp xe tải, xe cẩu, sơ mi rơ moóc, xe đầu kéo chất lượng cao."
 >
-  <Layout client:load>
+  <Layout client:load siteSettings={settings}>
     <!-- Hero Section / Page Header -->
     <section class="relative bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20">
       <div class="container mx-auto px-4">
