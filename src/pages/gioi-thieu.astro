@@ -3,6 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Layout from '../components/Layout.tsx';
 import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
+import { getEntry } from 'astro:content';
+
+const settingsEntry = await getEntry('settings', 'site-settings');
+const settings = settingsEntry?.data;
+const phone = settings?.contact_section?.phone || '0815555528';
+const phoneDisplay = settings?.contact_section?.phoneDisplay || '0815555528';
 ---
 
 <BaseLayout
@@ -253,8 +259,8 @@ import { Button } from '../components/ui/button';
                   </svg>
                   <span class="font-semibold">Hotline</span>
                 </div>
-                <a href="tel:0764678901" class="text-xl font-bold text-primary-300 hover:text-primary-200">
-                  0764 6789 01
+                <a href={`tel:${phone}`} class="text-xl font-bold text-primary-300 hover:text-primary-200">
+                  {phoneDisplay}
                 </a>
               </div>
 

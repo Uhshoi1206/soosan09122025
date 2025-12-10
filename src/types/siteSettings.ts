@@ -71,8 +71,8 @@ export const defaultSiteSettings: SiteSettings = {
         ogImage: '/og-default.jpg',
     },
     contact_section: {
-        phone: '0764678901',
-        phoneDisplay: '0764 6789 01',
+        phone: '0815555528',
+        phoneDisplay: '0815555528',
         email: 'sales@soosanmotor.com',
         address: '',
     },

@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, Phone, Mail, FileText, X } from 'lucide-react';
+import { MessageCircle, Phone, Mail, X } from 'lucide-react';
 import { FaTiktok } from 'react-icons/fa';
 import { SiZalo } from '@icons-pack/react-simple-icons';
+import { useSiteSettings } from '@/contexts/SiteSettingsContext';
 
 interface QuickContactProps {
   isOpen?: boolean;
@@ -13,42 +13,48 @@ const QuickContact: React.FC<QuickContactProps> = ({ isOpen: externalIsOpen, set
   const [activeIconIndex, setActiveIconIndex] = useState(0);
   const [isOpen, setInternalIsOpen] = useState(false);
   const timeoutRef = useRef<number | null>(null);
-  
+  const { contact_section, social_section } = useSiteSettings();
+  const phone = contact_section?.phone || '0815555528';
+  const email = contact_section?.email || 'sales@soosanmotor.com';
+  const zaloPhone = social_section?.zaloPhone || phone;
+  const messengerUrl = social_section?.messengerUrl || 'https://m.me/soosanmotor/';
+  const tiktokUrl = social_section?.tiktokUrl || 'https://www.tiktok.com/@moocsoosan';
+
   // Sử dụng state từ props nếu có, nếu không thì sử dụng state nội bộ
   const actualIsOpen = externalIsOpen !== undefined ? externalIsOpen : isOpen;
   const setActualIsOpen = externalSetIsOpen || setInternalIsOpen;
-  
+
   const contactLinks = [
     {
-      href: "https://m.me/soosanmotor/",
+      href: messengerUrl,
       icon: <MessageCircle className="w-5 h-5" />,
       color: "bg-[#0099FF]",
       hoverColor: "hover:bg-[#0088FF]",
       label: "Messenger"
     },
     {
-      href: "https://zalo.me/0764678901",
+      href: `https://zalo.me/${zaloPhone}`,
       icon: <SiZalo className="w-5 h-5" />,
       color: "bg-[#0068FF]",
       hoverColor: "hover:bg-[#0054CC]",
       label: "Zalo"
     },
     {
-      href: "https://www.tiktok.com/@moocsoosan",
+      href: tiktokUrl,
       icon: <FaTiktok className="w-5 h-5" />,
       color: "bg-[#000000]",
       hoverColor: "hover:bg-[#333333]",
       label: "TikTok"
     },
     {
-      href: "tel:0764678901",
+      href: `tel:${phone}`,
       icon: <Phone className="w-5 h-5" />,
       color: "bg-[#E60019]",
       hoverColor: "hover:bg-[#CC0017]",
       label: "Điện thoại"
     },
     {
-      href: "mailto:sales@soosanmotor.com",
+      href: `mailto:${email}`,
       icon: <Mail className="w-5 h-5" />,
       color: "bg-[#EA4335]",
       hoverColor: "hover:bg-[#D63A2D]",
@@ -72,12 +78,12 @@ const QuickContact: React.FC<QuickContactProps> = ({ isOpen: externalIsOpen, set
       if (timeoutRef.current !== null) {
         window.clearTimeout(timeoutRef.current);
       }
-      
+
       // Tạo timeout mới
       timeoutRef.current = window.setTimeout(() => {
         setActualIsOpen(false);
       }, 6000);
-      
+
       // Hàm cleanup
       return () => {
         if (timeoutRef.current !== null) {
@@ -86,12 +92,12 @@ const QuickContact: React.FC<QuickContactProps> = ({ isOpen: externalIsOpen, set
       };
     }
   }, [actualIsOpen, setActualIsOpen]);
-  
+
   // Reset timeout khi người dùng tương tác với menu
   const handleInteraction = () => {
     if (timeoutRef.current !== null) {
       window.clearTimeout(timeoutRef.current);
-      
+
       timeoutRef.current = window.setTimeout(() => {
         setActualIsOpen(false);
       }, 6000);
@@ -99,18 +105,18 @@ const QuickContact: React.FC<QuickContactProps> = ({ isOpen: externalIsOpen, set
   };
 
   return (
-    <div 
-      className="fixed left-4 bottom-32 z-50" 
+    <div
+      className="fixed left-4 bottom-32 z-50"
       onMouseMove={handleInteraction}
       onClick={handleInteraction}
     >
       {!actualIsOpen && (
-        <div 
+        <div
           className="relative w-[66px] h-[66px] bg-[#00aeef] rounded-full shadow-lg cursor-pointer"
           onClick={() => setActualIsOpen(true)}
         >
           <div className="absolute inset-0 rounded-full border border-[#00aeef] animate-[widgetPulse_1.5s_infinite]" />
-          
+
           <div className="relative w-full h-full overflow-hidden rounded-full">
             {contactLinks.map((contact, index) => (
               <div
@@ -153,8 +159,8 @@ const QuickContact: React.FC<QuickContactProps> = ({ isOpen: externalIsOpen, set
               </a>
             ))}
           </div>
-          
-          <button 
+
+          <button
             onClick={() => setActualIsOpen(false)}
             className="w-12 h-12 rounded-full bg-gray-600 hover:bg-gray-700 flex items-center justify-center text-white shadow-lg transition-all duration-300"
             aria-label="Đóng menu liên hệ"
