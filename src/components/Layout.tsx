@@ -3,7 +3,6 @@ import Header from './Header';
 import Footer from './Footer';
 import ScrollToTop from './ScrollToTop';
 import QuickContact from './QuickContact';
-import ColorStyleProvider from './ColorStyleProvider';
 import { CompareProvider } from '../contexts/CompareContextAstro';
 import { SiteSettingsProvider } from '../contexts/SiteSettingsContext';
 import { Toaster } from './ui/toaster';
@@ -18,18 +17,16 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children, siteSettings }) => {
   return (
     <SiteSettingsProvider settings={siteSettings}>
-      <ColorStyleProvider>
-        <CompareProvider>
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-            <ScrollToTop />
-            <QuickContact />
-            <Toaster />
-          </div>
-        </CompareProvider>
-      </ColorStyleProvider>
+      <CompareProvider>
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+          <ScrollToTop />
+          <QuickContact />
+          <Toaster />
+        </div>
+      </CompareProvider>
     </SiteSettingsProvider>
   );
 };

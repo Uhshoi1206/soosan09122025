@@ -265,20 +265,6 @@ const siteSettingsCollection = defineCollection({
       foundingDate: z.string().optional(),
       vatNumber: z.string().optional(),
     }),
-
-    // Colors Section (Theme customization)
-    colors_section: z.object({
-      primaryColor: z.string().default('#D84315'),
-      primaryForeground: z.string().default('#ffffff'),
-      secondaryColor: z.string().default('#1e3a5f'),
-      accentColor: z.string().default('#FF7043'),
-      headerBgColor: z.string().default('#1e3a5f'),
-      headerTextColor: z.string().default('#ffffff'),
-      footerBgColor: z.string().default('#1e293b'),
-      footerTextColor: z.string().default('#ffffff'),
-      buttonBgColor: z.string().optional(),
-      buttonTextColor: z.string().optional(),
-    }).optional(),
   }),
 });
 
