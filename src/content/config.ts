@@ -265,6 +265,35 @@ const siteSettingsCollection = defineCollection({
       foundingDate: z.string().optional(),
       vatNumber: z.string().optional(),
     }),
+
+    // Colors Section (Bảng màu website)
+    colors_section: z.object({
+      primaryColor: z.string(),
+      header: z.object({
+        bgColor: z.string(),
+        textColor: z.string(),
+        hoverColor: z.string(),
+      }),
+      footer: z.object({
+        bgColor: z.string(),
+        textColor: z.string(),
+        mutedColor: z.string(),
+      }),
+      pageHeader: z.object({
+        bgColor: z.string(),
+        textColor: z.string(),
+      }),
+      buttons: z.object({
+        primaryBg: z.string(),
+        primaryText: z.string(),
+        secondaryBg: z.string(),
+        secondaryText: z.string(),
+      }),
+      cards: z.object({
+        bgColor: z.string(),
+        borderColor: z.string(),
+      }),
+    }).optional(),
   }),
 });
 
