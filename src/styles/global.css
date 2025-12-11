@@ -148,9 +148,13 @@ a.bg-secondary,
   background-color: var(--page-header-bg, #1F2937) !important;
 }
 
-/* Page header text color */
-.bg-gray-800 .text-white,
-.bg-gray-900 .text-white {
+/* Page header text color - apply to ALL text inside page header sections */
+.bg-gray-800.text-white,
+.bg-gray-900.text-white,
+.bg-gray-800.text-white *,
+.bg-gray-900.text-white *,
+.page-header-bg,
+.page-header-bg * {
   color: var(--page-header-text, #FFFFFF) !important;
 }
 
