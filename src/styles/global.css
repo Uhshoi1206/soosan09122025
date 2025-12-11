@@ -77,6 +77,15 @@
   color: var(--btn-primary-bg, #D84315) !important;
 }
 
+/* Override text-white on primary buttons to use CMS text color */
+.bg-primary.text-white,
+.bg-primary .text-white,
+button.bg-primary,
+a.bg-primary,
+[class*="bg-primary"][class*="text-white"] {
+  color: var(--btn-primary-text, #FFFFFF) !important;
+}
+
 .hover\:bg-primary\/90:hover {
   background-color: color-mix(in srgb, var(--btn-primary-bg, #D84315) 90%, transparent) !important;
 }
