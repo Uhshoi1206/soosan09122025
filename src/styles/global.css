@@ -133,7 +133,7 @@ a.bg-secondary,
   border-color: var(--card-border, #E5E7EB);
 }
 
-/* Page Header utility classes - use these for consistent styling */
+/* Page Header utility classes - add these to your page header elements for CMS control */
 .page-header-bg {
   background-color: var(--page-header-bg, #1F2937) !important;
 }
@@ -142,21 +142,13 @@ a.bg-secondary,
   color: var(--page-header-text, #FFFFFF) !important;
 }
 
-/* Also apply to common page header patterns */
-.bg-gray-800,
-.bg-gray-900 {
-  background-color: var(--page-header-bg, #1F2937) !important;
-}
-
-/* Page header text color - apply to ALL text inside page header sections */
-.bg-gray-800.text-white,
-.bg-gray-900.text-white,
-.bg-gray-800.text-white *,
-.bg-gray-900.text-white *,
-.page-header-bg,
-.page-header-bg * {
+/* Apply page header colors to all children when using utility class */
+.page-header-bg.page-header-text,
+.page-header-bg.page-header-text * {
   color: var(--page-header-text, #FFFFFF) !important;
 }
+
+/* Note: bg-gray-800/900 are NOT overridden to avoid affecting footer */
 
 @keyframes fadeSlideIn {
   from {
