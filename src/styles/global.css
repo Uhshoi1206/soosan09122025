@@ -59,6 +59,23 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Override button primary colors with CMS values */
+  .bg-primary {
+    background-color: var(--btn-primary-bg, #D84315) !important;
+  }
+
+  .text-primary-foreground {
+    color: var(--btn-primary-text, #FFFFFF) !important;
+  }
+
+  .text-primary {
+    color: var(--btn-primary-bg, #D84315) !important;
+  }
+
+  .hover\:bg-primary\/90:hover {
+    background-color: color-mix(in srgb, var(--btn-primary-bg, #D84315) 90%, transparent) !important;
+  }
 }
 
 @keyframes fadeSlideIn {
