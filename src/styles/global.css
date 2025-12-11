@@ -94,6 +94,30 @@ a.bg-primary,
   border-color: var(--btn-primary-bg, #D84315) !important;
 }
 
+/* Secondary button overrides */
+.bg-secondary {
+  background-color: var(--btn-secondary-bg, #F3F4F6) !important;
+}
+
+.text-secondary-foreground {
+  color: var(--btn-secondary-text, #1F2937) !important;
+}
+
+.bg-secondary.text-secondary-foreground,
+button.bg-secondary,
+a.bg-secondary,
+[class*="bg-secondary"] {
+  color: var(--btn-secondary-text, #1F2937) !important;
+}
+
+.hover\:bg-secondary\/80:hover {
+  background-color: color-mix(in srgb, var(--btn-secondary-bg, #F3F4F6) 80%, transparent) !important;
+}
+
+.border-secondary {
+  border-color: var(--btn-secondary-bg, #F3F4F6) !important;
+}
+
 @keyframes fadeSlideIn {
   from {
     opacity: 0;
