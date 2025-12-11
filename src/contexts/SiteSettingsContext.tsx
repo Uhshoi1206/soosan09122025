@@ -31,6 +31,33 @@ const defaultSiteSettings: SiteSettings = {
         organizationName: 'SOOSAN VINA MOTOR',
         organizationType: 'LocalBusiness',
     },
+    colors_section: {
+        primaryColor: '#D84315',
+        header: {
+            bgColor: '#FFFFFF',
+            textColor: '#1F2937',
+            hoverColor: '#D84315',
+        },
+        footer: {
+            bgColor: '#111827',
+            textColor: '#FFFFFF',
+            mutedColor: '#9CA3AF',
+        },
+        pageHeader: {
+            bgColor: '#1F2937',
+            textColor: '#FFFFFF',
+        },
+        buttons: {
+            primaryBg: '#D84315',
+            primaryText: '#FFFFFF',
+            secondaryBg: '#F3F4F6',
+            secondaryText: '#1F2937',
+        },
+        cards: {
+            bgColor: '#FFFFFF',
+            borderColor: '#E5E7EB',
+        },
+    },
 };
 
 // Context
@@ -52,6 +79,14 @@ export const SiteSettingsProvider: React.FC<SiteSettingsProviderProps> = ({ chil
         social_section: { ...defaultSiteSettings.social_section, ...settings?.social_section },
         seo_section: { ...defaultSiteSettings.seo_section, ...settings?.seo_section },
         organization_section: { ...defaultSiteSettings.organization_section, ...settings?.organization_section },
+        colors_section: settings?.colors_section ? {
+            primaryColor: settings.colors_section.primaryColor || defaultSiteSettings.colors_section!.primaryColor,
+            header: { ...defaultSiteSettings.colors_section!.header, ...settings.colors_section.header },
+            footer: { ...defaultSiteSettings.colors_section!.footer, ...settings.colors_section.footer },
+            pageHeader: { ...defaultSiteSettings.colors_section!.pageHeader, ...settings.colors_section.pageHeader },
+            buttons: { ...defaultSiteSettings.colors_section!.buttons, ...settings.colors_section.buttons },
+            cards: { ...defaultSiteSettings.colors_section!.cards, ...settings.colors_section.cards },
+        } : defaultSiteSettings.colors_section,
     };
 
     return (
@@ -91,6 +126,11 @@ export const useBranches = (): Branch[] => {
 export const useOrganization = () => {
     const { organization_section } = useSiteSettings();
     return organization_section;
+};
+
+export const useColors = () => {
+    const { colors_section } = useSiteSettings();
+    return colors_section || defaultSiteSettings.colors_section!;
 };
 
 export default SiteSettingsContext;

@@ -72,29 +72,36 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white pt-12 pb-8">
+    <footer
+      className="pt-12 pb-8"
+      style={{
+        backgroundColor: 'var(--footer-bg)',
+        color: 'var(--footer-text)'
+      }}
+    >
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
             <h3 className="font-heading text-xl font-bold mb-4">{organizationName}</h3>
-            <p className="mb-4 text-gray-300">
+            <p className="mb-4" style={{ color: 'var(--footer-muted)' }}>
               Nhà sản xuất sơ mi rơ moóc, cẩu, thùng xe tải đông lạnh, xe xitéc (bồn) chở xăng dầu và các loại xe chuyên dụng khác.
               Đa dạng tải trọng và mẫu mã, giá cả cạnh tranh trên thị trường.
             </p>
             <div className="flex flex-col space-y-2">
               <div className="flex items-center">
-                <Phone className="h-4 w-4 mr-2 text-primary" />
+                <Phone className="h-4 w-4 mr-2" style={{ color: 'var(--color-primary)' }} />
                 <a
                   href={`tel:${phone}`}
-                  className="hover:underline font-semibold text-white"
+                  className="hover:underline font-semibold"
+                  style={{ color: 'var(--footer-text)' }}
                   aria-label={`Gọi ngay: ${phoneDisplay}`}
                 >
                   {phoneDisplay}
                 </a>
               </div>
               <div className="flex items-center">
-                <Mail className="h-4 w-4 mr-2 text-primary" />
+                <Mail className="h-4 w-4 mr-2" style={{ color: 'var(--color-primary)' }} />
                 <span>{email}</span>
               </div>
             </div>

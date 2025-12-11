@@ -34,6 +34,37 @@ const bingVerification = siteSettings?.seo_section?.bingVerification;
 const org = siteSettings?.organization_section;
 const contact = siteSettings?.contact_section;
 
+// Colors Section with defaults
+const colors = siteSettings?.colors_section || {
+  primaryColor: '#D84315',
+  header: { bgColor: '#FFFFFF', textColor: '#1F2937', hoverColor: '#D84315' },
+  footer: { bgColor: '#111827', textColor: '#FFFFFF', mutedColor: '#9CA3AF' },
+  pageHeader: { bgColor: '#1F2937', textColor: '#FFFFFF' },
+  buttons: { primaryBg: '#D84315', primaryText: '#FFFFFF', secondaryBg: '#F3F4F6', secondaryText: '#1F2937' },
+  cards: { bgColor: '#FFFFFF', borderColor: '#E5E7EB' }
+};
+
+// Generate CSS variables from colors
+const colorCSSVariables = `
+  :root {
+    --color-primary: ${colors.primaryColor};
+    --header-bg: ${colors.header?.bgColor || '#FFFFFF'};
+    --header-text: ${colors.header?.textColor || '#1F2937'};
+    --header-hover: ${colors.header?.hoverColor || '#D84315'};
+    --footer-bg: ${colors.footer?.bgColor || '#111827'};
+    --footer-text: ${colors.footer?.textColor || '#FFFFFF'};
+    --footer-muted: ${colors.footer?.mutedColor || '#9CA3AF'};
+    --page-header-bg: ${colors.pageHeader?.bgColor || '#1F2937'};
+    --page-header-text: ${colors.pageHeader?.textColor || '#FFFFFF'};
+    --btn-primary-bg: ${colors.buttons?.primaryBg || '#D84315'};
+    --btn-primary-text: ${colors.buttons?.primaryText || '#FFFFFF'};
+    --btn-secondary-bg: ${colors.buttons?.secondaryBg || '#F3F4F6'};
+    --btn-secondary-text: ${colors.buttons?.secondaryText || '#1F2937'};
+    --card-bg: ${colors.cards?.bgColor || '#FFFFFF'};
+    --card-border: ${colors.cards?.borderColor || '#E5E7EB'};
+  }
+`;
+
 const {
   title = `${siteName} - ${siteTagline}`,
   description = defaultDescription,
@@ -147,6 +178,9 @@ const organizationSchema = org ? {
     
     <!-- Scripts -->
     <script is:inline src="/search-enhanced.js"></script>
+    
+    <!-- Dynamic Color Variables from CMS -->
+    <style set:html={colorCSSVariables}></style>
   </head>
   <body>
     <slot />

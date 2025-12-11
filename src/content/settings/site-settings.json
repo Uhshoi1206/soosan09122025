@@ -133,5 +133,32 @@
     "organizationType": "LocalBusiness",
     "foundingDate": "",
     "vatNumber": ""
+  },
+  "colors_section": {
+    "primaryColor": "#D84315",
+    "header": {
+      "bgColor": "#FFFFFF",
+      "textColor": "#1F2937",
+      "hoverColor": "#D84315"
+    },
+    "footer": {
+      "bgColor": "#111827",
+      "textColor": "#FFFFFF",
+      "mutedColor": "#9CA3AF"
+    },
+    "pageHeader": {
+      "bgColor": "#1F2937",
+      "textColor": "#FFFFFF"
+    },
+    "buttons": {
+      "primaryBg": "#D84315",
+      "primaryText": "#FFFFFF",
+      "secondaryBg": "#F3F4F6",
+      "secondaryText": "#1F2937"
+    },
+    "cards": {
+      "bgColor": "#FFFFFF",
+      "borderColor": "#E5E7EB"
+    }
   }
 }

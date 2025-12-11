@@ -11,6 +11,35 @@ export interface Branch {
     addresses: BranchAddress[];
 }
 
+// Colors Section Types
+export interface ColorsSection {
+    primaryColor: string;
+    header: {
+        bgColor: string;
+        textColor: string;
+        hoverColor: string;
+    };
+    footer: {
+        bgColor: string;
+        textColor: string;
+        mutedColor: string;
+    };
+    pageHeader: {
+        bgColor: string;
+        textColor: string;
+    };
+    buttons: {
+        primaryBg: string;
+        primaryText: string;
+        secondaryBg: string;
+        secondaryText: string;
+    };
+    cards: {
+        bgColor: string;
+        borderColor: string;
+    };
+}
+
 export interface SiteSettings {
     general_section: {
         siteName: string;
@@ -53,6 +82,7 @@ export interface SiteSettings {
         foundingDate?: string;
         vatNumber?: string;
     };
+    colors_section?: ColorsSection;
 }
 
 // Default settings for fallback
@@ -85,4 +115,32 @@ export const defaultSiteSettings: SiteSettings = {
         organizationName: 'SOOSAN VINA MOTOR',
         organizationType: 'LocalBusiness',
     },
+    colors_section: {
+        primaryColor: '#D84315',
+        header: {
+            bgColor: '#FFFFFF',
+            textColor: '#1F2937',
+            hoverColor: '#D84315',
+        },
+        footer: {
+            bgColor: '#111827',
+            textColor: '#FFFFFF',
+            mutedColor: '#9CA3AF',
+        },
+        pageHeader: {
+            bgColor: '#1F2937',
+            textColor: '#FFFFFF',
+        },
+        buttons: {
+            primaryBg: '#D84315',
+            primaryText: '#FFFFFF',
+            secondaryBg: '#F3F4F6',
+            secondaryText: '#1F2937',
+        },
+        cards: {
+            bgColor: '#FFFFFF',
+            borderColor: '#E5E7EB',
+        },
+    },
 };
+

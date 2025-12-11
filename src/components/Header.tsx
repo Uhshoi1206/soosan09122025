@@ -32,7 +32,10 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header
+      className="shadow-sm sticky top-0 z-50"
+      style={{ backgroundColor: 'var(--header-bg)' }}
+    >
       <div className="container mx-auto">
         <div className="flex items-center justify-between py-3">
           {/* Logo */}
@@ -47,7 +50,13 @@ const Header: React.FC = () => {
           {/* Desktop Navigation */}
           {!isMobile && (
             <nav className="hidden md:flex items-center space-x-4">
-              <a href="/" className="text-sm font-medium hover:text-primary transition-colors">
+              <a
+                href="/"
+                className="text-sm font-medium transition-colors"
+                style={{ color: 'var(--header-text)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--header-hover)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--header-text)'}
+              >
                 Trang chủ
               </a>
               <a href="/danh-muc-xe" className="text-sm font-medium hover:text-primary transition-colors">

@@ -100,7 +100,54 @@ collections:
             fields:
               - { label: "Google Verification", name: "googleVerification", widget: "string", required: false, hint: "Mã xác minh Google Search Console" }
               - { label: "Bing Verification", name: "bingVerification", widget: "string", required: false }
-              - { label: "Theme Color", name: "themeColor", widget: "string", default: "#dc2626", hint: "Màu theme cho mobile browser" }
+              - { label: "Theme Color", name: "themeColor", widget: "color", default: "#dc2626", hint: "Màu theme cho mobile browser" }
+          
+          # === BẢNG MÀU WEBSITE ===
+          - label: "🎨 Bảng Màu Website"
+            name: "colors_section"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Màu Chủ Đạo (Primary)", name: "primaryColor", widget: "color", default: "#D84315", hint: "Màu chính cho buttons, links, accents" }
+              - label: "Header"
+                name: "header"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Nền Header", name: "bgColor", widget: "color", default: "#FFFFFF" }
+                  - { label: "Màu Text", name: "textColor", widget: "color", default: "#1F2937" }
+                  - { label: "Màu Hover", name: "hoverColor", widget: "color", default: "#D84315" }
+              - label: "Footer"
+                name: "footer"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Nền Footer", name: "bgColor", widget: "color", default: "#111827" }
+                  - { label: "Màu Text", name: "textColor", widget: "color", default: "#FFFFFF" }
+                  - { label: "Màu Text Phụ", name: "mutedColor", widget: "color", default: "#9CA3AF" }
+              - label: "Page Headers"
+                name: "pageHeader"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Nền", name: "bgColor", widget: "color", default: "#1F2937" }
+                  - { label: "Màu Text", name: "textColor", widget: "color", default: "#FFFFFF" }
+              - label: "Buttons"
+                name: "buttons"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Nền Button Chính", name: "primaryBg", widget: "color", default: "#D84315" }
+                  - { label: "Text Button Chính", name: "primaryText", widget: "color", default: "#FFFFFF" }
+                  - { label: "Nền Button Phụ", name: "secondaryBg", widget: "color", default: "#F3F4F6" }
+                  - { label: "Text Button Phụ", name: "secondaryText", widget: "color", default: "#1F2937" }
+              - label: "Cards & Content"
+                name: "cards"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Nền Card", name: "bgColor", widget: "color", default: "#FFFFFF" }
+                  - { label: "Viền Card", name: "borderColor", widget: "color", default: "#E5E7EB" }
           
           # === ORGANIZATION SCHEMA ===
           - label: "🏛️ Thông Tin Doanh Nghiệp (Schema.org)"
@@ -119,6 +166,7 @@ collections:
                   - { label: "Tổ chức", value: "Organization" }
               - { label: "Ngày Thành Lập", name: "foundingDate", widget: "string", required: false, hint: "Định dạng: YYYY-MM-DD" }
               - { label: "Mã Số Thuế", name: "vatNumber", widget: "string", required: false }
+
 
   # Product Categories Collection
   - name: "categories"
