@@ -201,7 +201,7 @@ const Footer: React.FC = () => {
               <h3 className="font-heading text-xl font-bold mb-4">Kết nối với chúng tôi</h3>
               <div className="flex flex-col space-y-4">
                 <a
-                  href={facebookUrl}
+                  href="https://www.facebook.com/soosanmotor"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 text-gray-300 hover:text-[#1877F2] transition-colors group"
@@ -209,11 +209,11 @@ const Footer: React.FC = () => {
                   <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-[#1877F2] transition-colors">
                     <Facebook className="h-5 w-5" />
                   </div>
-                  <span>{facebookUsername}</span>
+                  <span>@soosanmotor</span>
                 </a>
 
                 <a
-                  href={messengerUrl}
+                  href="https://m.me/soosanmotor"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 text-gray-300 hover:text-[#0099FF] transition-colors group"
@@ -221,11 +221,11 @@ const Footer: React.FC = () => {
                   <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-[#0099FF] transition-colors">
                     <MessageCircle className="h-5 w-5" />
                   </div>
-                  <span>{facebookUsername}</span>
+                  <span>@soosanmotor</span>
                 </a>
 
                 <a
-                  href={youtubeUrl}
+                  href="https://youtube.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 text-gray-300 hover:text-[#FF0000] transition-colors group"
@@ -233,11 +233,11 @@ const Footer: React.FC = () => {
                   <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-[#FF0000] transition-colors">
                     <Youtube className="h-5 w-5" />
                   </div>
-                  <span>{youtubeChannelName}</span>
+                  <span>Soosan Vina Motor</span>
                 </a>
 
                 <a
-                  href={tiktokUrl}
+                  href="https://www.tiktok.com/@moocsoosan"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors group"
@@ -247,7 +247,7 @@ const Footer: React.FC = () => {
                       <FaTiktok className="h-5 w-5" />
                     </div>
                   </div>
-                  <span>{tiktokUsername}</span>
+                  <span>@moocsoosan</span>
                 </a>
               </div>
             </div>

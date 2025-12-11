@@ -13,7 +13,6 @@ import {
 import CompareBadge from './CompareBadge';
 import { useCompare } from '@/contexts/CompareContextAstro';
 import { useSiteSettings } from '@/contexts/SiteSettingsContext';
-import DarkModeToggle from './DarkModeToggle';
 
 const Header: React.FC = () => {
   const isMobile = useIsMobile();
@@ -33,7 +32,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-white dark:bg-gray-900 shadow-sm dark:shadow-gray-800 sticky top-0 z-50 transition-colors duration-200">
+    <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container mx-auto">
         <div className="flex items-center justify-between py-3">
           {/* Logo */}
@@ -100,25 +99,19 @@ const Header: React.FC = () => {
             )}
 
             {!isMobile ? (
-              <>
-                <DarkModeToggle />
-                <Popover open={open} onOpenChange={setOpen}>
-                  <PopoverTrigger asChild>
-                    <Button variant="outline" size="sm" className="flex items-center text-xs">
-                      <Search className="h-3 w-3 mr-1" />
-                      Tìm kiếm
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-96 p-4" align="end">
-                    <SearchBox onClose={() => setOpen(false)} />
-                  </PopoverContent>
-                </Popover>
-              </>
+              <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" size="sm" className="flex items-center text-xs">
+                    <Search className="h-3 w-3 mr-1" />
+                    Tìm kiếm
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-96 p-4" align="end">
+                  <SearchBox onClose={() => setOpen(false)} />
+                </PopoverContent>
+              </Popover>
             ) : (
-              <>
-                <DarkModeToggle />
-                <MobileMenu />
-              </>
+              <MobileMenu />
             )}
           </div>
         </div>
