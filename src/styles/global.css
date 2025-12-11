@@ -25,22 +25,7 @@
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
 
-    /* Custom Color Variables (Colors Section) */
-    --color-primary: #D84315;
-    --header-bg: #FFFFFF;
-    --header-text: #1F2937;
-    --header-hover: #D84315;
-    --footer-bg: #111827;
-    --footer-text: #FFFFFF;
-    --footer-muted: #9CA3AF;
-    --page-header-bg: #1F2937;
-    --page-header-text: #FFFFFF;
-    --btn-primary-bg: #D84315;
-    --btn-primary-text: #FFFFFF;
-    --btn-secondary-bg: #F3F4F6;
-    --btn-secondary-text: #1F2937;
-    --card-bg: #FFFFFF;
-    --card-border: #E5E7EB;
+    /* Color Variables are now injected dynamically from BaseLayout.astro */
   }
 
   .dark {
