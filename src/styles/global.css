@@ -133,14 +133,24 @@ a.bg-secondary,
   border-color: var(--card-border, #E5E7EB);
 }
 
-/* Page Header overrides - typically uses bg-gray-800 */
-.bg-gray-800 {
+/* Page Header utility classes - use these for consistent styling */
+.page-header-bg {
+  background-color: var(--page-header-bg, #1F2937) !important;
+}
+
+.page-header-text {
+  color: var(--page-header-text, #FFFFFF) !important;
+}
+
+/* Also apply to common page header patterns */
+.bg-gray-800,
+.bg-gray-900 {
   background-color: var(--page-header-bg, #1F2937) !important;
 }
 
 /* Page header text color */
-.text-gray-800+.text-white,
-.bg-gray-800 .text-white {
+.bg-gray-800 .text-white,
+.bg-gray-900 .text-white {
   color: var(--page-header-text, #FFFFFF) !important;
 }
 
