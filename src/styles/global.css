@@ -118,6 +118,21 @@ a.bg-secondary,
   border-color: var(--btn-secondary-bg, #F3F4F6) !important;
 }
 
+/* Card overrides */
+.bg-card {
+  background-color: var(--card-bg, #FFFFFF) !important;
+}
+
+.border {
+  border-color: var(--card-border, #E5E7EB);
+}
+
+/* Card component styles - using attribute selector for more specificity */
+[class*="rounded-lg"][class*="border"][class*="shadow"] {
+  background-color: var(--card-bg, #FFFFFF);
+  border-color: var(--card-border, #E5E7EB);
+}
+
 @keyframes fadeSlideIn {
   from {
     opacity: 0;
