@@ -128,12 +128,6 @@
     "bingVerification": "",
     "themeColor": "#dc2626"
   },
-  "organization_section": {
-    "organizationName": "SOOSAN VINA MOTOR",
-    "organizationType": "LocalBusiness",
-    "foundingDate": "",
-    "vatNumber": ""
-  },
   "colors_section": {
     "primaryColor": "#D84315",
     "header": {
@@ -151,7 +145,7 @@
       "textColor": "#FFFFFF"
     },
     "buttons": {
-      "primaryBg": "#D84315",
+      "primaryBg": "#d5cf15",
       "primaryText": "#FFFFFF",
       "secondaryBg": "#F3F4F6",
       "secondaryText": "#1F2937"
@@ -160,5 +154,11 @@
       "bgColor": "#FFFFFF",
       "borderColor": "#E5E7EB"
     }
+  },
+  "organization_section": {
+    "organizationName": "SOOSAN VINA MOTOR",
+    "organizationType": "LocalBusiness",
+    "foundingDate": "",
+    "vatNumber": ""
   }
 }
