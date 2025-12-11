@@ -133,6 +133,17 @@ a.bg-secondary,
   border-color: var(--card-border, #E5E7EB);
 }
 
+/* Page Header overrides - typically uses bg-gray-800 */
+.bg-gray-800 {
+  background-color: var(--page-header-bg, #1F2937) !important;
+}
+
+/* Page header text color */
+.text-gray-800+.text-white,
+.bg-gray-800 .text-white {
+  color: var(--page-header-text, #FFFFFF) !important;
+}
+
 @keyframes fadeSlideIn {
   from {
     opacity: 0;
