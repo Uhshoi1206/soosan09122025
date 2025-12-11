@@ -137,7 +137,7 @@
     },
     "footer": {
       "bgColor": "#111827",
-      "textColor": "#FFFFFF",
+      "textColor": "#f70808",
       "mutedColor": "#9CA3AF"
     },
     "pageHeader": {
