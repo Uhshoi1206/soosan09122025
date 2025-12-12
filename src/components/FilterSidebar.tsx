@@ -10,6 +10,7 @@ import { VehicleTypeFilter } from './filters/VehicleTypeFilter';
 import { BrandFilter } from './filters/BrandFilter';
 import { PriceFilter } from './filters/PriceFilter';
 import { WeightFilter } from './filters/WeightFilter';
+import { AxleFilter } from './filters/AxleFilter';
 
 interface FilterSidebarProps {
   filters?: TruckFilters;
@@ -26,13 +27,14 @@ const defaultFilters: TruckFilters = {
   minWeight: null,
   maxWeight: null,
   vehicleType: null,
-  search: null
+  search: null,
+  axleCount: null
 };
 
 const FilterSidebar: React.FC<FilterSidebarProps> = ({
   filters = defaultFilters,
-  onFilterChange = () => {},
-  onResetFilters = () => {},
+  onFilterChange = () => { },
+  onResetFilters = () => { },
   className = "",
   vehicles
 }) => {
@@ -84,10 +86,10 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
   const handleApplyFilters = () => {
     console.log("Áp dụng bộ lọc:", localFilters);
-    
+
     // Truyền toàn bộ object filters
     onFilterChange(localFilters);
-    
+
     toast({
       title: "Đã áp dụng bộ lọc",
       description: "Danh sách sản phẩm đã được cập nhật.",
@@ -102,13 +104,14 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
       minWeight: null,
       maxWeight: null,
       vehicleType: null,
-      search: null
+      search: null,
+      axleCount: null
     });
     setPriceRange([0, 1000000000]);
     setWeightRange([0, 100]);
     setSearchInput('');
     onResetFilters();
-    
+
     toast({
       title: "Đã đặt lại bộ lọc",
       description: "Tất cả bộ lọc đã được xóa.",
@@ -178,6 +181,13 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
         <WeightFilter
           weightRange={weightRange}
           onWeightChange={handleWeightChange}
+        />
+
+        <Separator />
+
+        <AxleFilter
+          selectedAxle={localFilters.axleCount}
+          onAxleChange={(value) => handleFilterChange('axleCount', value)}
         />
 
         <Button

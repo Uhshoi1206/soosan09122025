@@ -21,6 +21,7 @@ export interface TruckFilters {
   maxWeight: number | null;
   vehicleType: VehicleType | null;
   search: string | null;
+  axleCount: number | null;
 }
 
 // Chi tiết kết cấu thùng cho xe tải thùng đông lạnh, bảo ôn
