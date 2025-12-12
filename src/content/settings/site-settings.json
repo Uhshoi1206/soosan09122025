@@ -131,7 +131,7 @@
   "colors_section": {
     "primaryColor": "#D84315",
     "header": {
-      "bgColor": "#FFFFFF",
+      "bgColor": "#f8e40d",
       "textColor": "#1F2937",
       "hoverColor": "#D84315"
     },
