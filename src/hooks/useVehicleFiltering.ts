@@ -84,8 +84,12 @@ export const useVehicleFiltering = (vehicles: Truck[], selectedType: VehicleType
       // Lấy số trục từ thông số kỹ thuật xe
       let vehicleAxleCount: number | undefined;
 
-      // Kiểm tra trailerSpec (cho mooc)
-      if (vehicle.trailerSpec?.axleCount) {
+      // Kiểm tra trailerSpec.axleAndSuspension (cho mooc - đường dẫn chính xác từ JSON)
+      if (vehicle.trailerSpec?.axleAndSuspension?.axleCount) {
+        vehicleAxleCount = vehicle.trailerSpec.axleAndSuspension.axleCount;
+      }
+      // Backup: kiểm tra trailerSpec.axleCount trực tiếp
+      else if (vehicle.trailerSpec?.axleCount) {
         vehicleAxleCount = vehicle.trailerSpec.axleCount;
       }
       // Kiểm tra tractorSpec.axleConfiguration (cho đầu kéo - format: "6x4", "4x2", etc.)
@@ -102,20 +106,28 @@ export const useVehicleFiltering = (vehicles: Truck[], selectedType: VehicleType
       else if (vehicle.specifications?.axleCount) {
         vehicleAxleCount = vehicle.specifications.axleCount;
       }
+      // Backup: kiểm tra specifications.axleAndSuspension
+      else if (vehicle.specifications?.axleAndSuspension?.axleCount) {
+        vehicleAxleCount = vehicle.specifications.axleAndSuspension.axleCount;
+      }
 
-      if (vehicleAxleCount !== undefined) {
-        // Trường hợp "5 trục trở lên"
-        if (filters.axleCount === 5) {
-          if (vehicleAxleCount < 5) {
-            console.log(`Xe ${vehicle.name} (${vehicleAxleCount} trục) bị loại vì cần >= 5 trục`);
-            return false;
-          }
-        } else {
-          // Trường hợp lọc theo số trục cụ thể
-          if (vehicleAxleCount !== filters.axleCount) {
-            console.log(`Xe ${vehicle.name} (${vehicleAxleCount} trục) bị loại vì không khớp với ${filters.axleCount} trục`);
-            return false;
-          }
+      // Nếu xe không có thông tin số trục, loại bỏ khỏi kết quả
+      if (vehicleAxleCount === undefined) {
+        console.log(`Xe ${vehicle.name} bị loại vì không có thông tin số trục`);
+        return false;
+      }
+
+      // Trường hợp "5 trục trở lên"
+      if (filters.axleCount === 5) {
+        if (vehicleAxleCount < 5) {
+          console.log(`Xe ${vehicle.name} (${vehicleAxleCount} trục) bị loại vì cần >= 5 trục`);
+          return false;
+        }
+      } else {
+        // Trường hợp lọc theo số trục cụ thể
+        if (vehicleAxleCount !== filters.axleCount) {
+          console.log(`Xe ${vehicle.name} (${vehicleAxleCount} trục) bị loại vì không khớp với ${filters.axleCount} trục`);
+          return false;
         }
       }
     }
