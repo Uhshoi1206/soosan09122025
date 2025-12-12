@@ -5,7 +5,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import ScrollToTop from '../ScrollToTop';
 import { Toaster } from '../ui/toaster';
-import { Truck, getVehicleTypeName, getBoxTypeName, getTrailerTypeName } from '@/models/TruckTypes';
+import { Truck, getVehicleTypeName, getBoxTypeName, getTrailerTypeName, getStockStatusInfo } from '@/models/TruckTypes';
 import { BlogPost } from '@/models/BlogPost';
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import { Badge } from '@/components/ui/badge';
@@ -127,6 +127,18 @@ const ProductDetailWithProvider: React.FC<ProductDetailWithProviderProps> = ({
 
                 {/* Right: Product Info */}
                 <div>
+                  {/* Stock Status Badge - Prominent display */}
+                  {(() => {
+                    const stockInfo = getStockStatusInfo(truck.stockStatus);
+                    return stockInfo.show && (
+                      <div className="mb-4">
+                        <Badge className={`${stockInfo.className} text-sm px-4 py-1.5 animate-pulse`}>
+                          {stockInfo.label === 'Sẵn hàng' ? '✓ ' : ''}{stockInfo.label}
+                        </Badge>
+                      </div>
+                    );
+                  })()}
+
                   <div className="flex flex-wrap gap-2 mb-3">
                     {truck.isNew && (
                       <Badge className="bg-blue-500 hover:bg-blue-600">Mới</Badge>
