@@ -29,13 +29,17 @@ const postsByCategory = categories.reduce((acc, cat) => {
   description="Cập nhật tin tức mới nhất về ngành vận tải, đánh giá xe tải, xe cẩu, kinh nghiệm lái xe và bảo dưỡng."
 >
   <Layout client:load siteSettings={settings}>
-    <div class="container mx-auto px-4 py-8">
-      <div class="text-center mb-8">
-        <h1 class="text-4xl font-bold mb-3 text-gray-900">Tin Tức & Blog</h1>
-        <p class="text-gray-600 max-w-2xl mx-auto">
+    {/* Page Header */}
+    <div class="page-header-bg page-header-text py-12">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl font-bold mb-3">Tin Tức & Blog</h1>
+        <p class="max-w-2xl mx-auto opacity-80">
           Cập nhật tin tức mới nhất về ngành vận tải, đánh giá xe tải, xe cẩu, kinh nghiệm lái xe và bảo dưỡng
         </p>
       </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
 
       <BlogSearch
         client:load

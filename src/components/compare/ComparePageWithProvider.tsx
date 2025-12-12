@@ -19,12 +19,17 @@ const ComparePageWithProvider: React.FC<ComparePageWithProviderProps> = ({ siteS
         <div className="flex flex-col min-h-screen">
           <Header />
           <main className="flex-grow">
-            <div className="container mx-auto px-4 py-12">
-              <h1 className="text-4xl font-bold text-center mb-4">So Sánh Xe</h1>
-              <p className="text-center text-gray-600 mb-12">
-                Chọn tối đa 3 xe để so sánh chi tiết thông số kỹ thuật và giá cả
-              </p>
+            {/* Page Header */}
+            <div className="page-header-bg page-header-text py-12">
+              <div className="container mx-auto px-4 text-center">
+                <h1 className="text-4xl font-bold mb-4">So Sánh Xe</h1>
+                <p className="max-w-2xl mx-auto opacity-80">
+                  Chọn tối đa 3 xe để so sánh chi tiết thông số kỹ thuật và giá cả
+                </p>
+              </div>
+            </div>
 
+            <div className="container mx-auto px-4 py-12">
               <ComparePageContent />
             </div>
           </main>

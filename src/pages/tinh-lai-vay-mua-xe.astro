@@ -14,14 +14,18 @@ const description = 'Công cụ tính lãi vay mua xe tải, xe cẩu, mooc và 
 
 <BaseLayout title={title} description={description}>
   <Layout client:load siteSettings={settings}>
+    {/* Page Header */}
+    <div class="page-header-bg page-header-text py-12">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-3xl font-bold mb-4">Tính Lãi Vay Mua Xe</h1>
+        <p class="text-lg max-w-2xl mx-auto opacity-80">
+          Công cụ hỗ trợ tính toán lãi vay và kế hoạch trả góp cho xe tải, xe cẩu, sơ mi rơ mooc và xe đầu kéo
+        </p>
+      </div>
+    </div>
+
     <div class="container mx-auto px-4 py-8">
       <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-8">
-          <h1 class="text-3xl font-bold text-gray-800 mb-4">Tính Lãi Vay Mua Xe</h1>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-            Công cụ hỗ trợ tính toán lãi vay và kế hoạch trả góp cho xe tải, xe cẩu, sơ mi rơ mooc và xe đầu kéo
-          </p>
-        </div>
 
         <!-- Form tính toán - Static HTML for SEO -->
         <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
